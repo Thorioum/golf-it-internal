@@ -23,5 +23,8 @@
     <ClInclude Include="memory.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="golf.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

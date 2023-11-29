@@ -6,8 +6,10 @@
 #include <string>
 #include <psapi.h>
 #include <TlHelp32.h>
+#include <functional>
 
 namespace mem {
+    //"GolfIt-Win64-Shipping.exe"+0x05948FE8
     std::vector <unsigned int> xoffsets = { 0x8,0x0,0x58,0x0,0x0,0x88, 0x10 };
     std::vector <unsigned int> zoffsets = { 0x8,0x0,0x58,0x0,0x0,0x88, 0x14 };
     std::vector <unsigned int> yoffsets = { 0x8,0x0,0x58,0x0,0x0,0x88, 0x18 };
@@ -15,6 +17,16 @@ namespace mem {
     std::vector <unsigned int> xveloffsets = { 0x8,0x0,0x58,0x0,0x0,0x88, 0x40 };
     std::vector <unsigned int> zveloffsets = { 0x8,0x0,0x58,0x0,0x0,0x88, 0x44 };
     std::vector <unsigned int> yveloffsets = { 0x8,0x0,0x58,0x0,0x0,0x88, 0x48 };
+    //"GolfIt-Win64-Shipping.exe"+057DD8C8
+    std::vector <unsigned int> cameraQuatXOffsets = { 0xE8,0x128,0x1A0,0xA0,0x28,0x130, 0x0 };
+    std::vector <unsigned int> cameraQuatZOffsets = { 0xE8,0x128,0x1A0,0xA0,0x28,0x130, 0x4 };
+    std::vector <unsigned int> cameraQuatYOffsets = { 0xE8,0x128,0x1A0,0xA0,0x28,0x130, 0x8 };
+    std::vector <unsigned int> cameraQuatWOffsets = { 0xE8,0x128,0x1A0,0xA0,0x28,0x130, 0xC };
+  
+    std::vector <unsigned int> cameraXOffsets = { 0xE8,0x128,0x1A0,0xA0,0x28,0x130, 0x10 };
+    std::vector <unsigned int> cameraZOffsets = { 0xE8,0x128,0x1A0,0xA0,0x28,0x130, 0x14 };
+    std::vector <unsigned int> cameraYOffsets = { 0xE8,0x128,0x1A0,0xA0,0x28,0x130, 0x18 };
+
 }
 
 
@@ -90,13 +102,18 @@ public:
         ReadProcessMemory(proc, (BYTE*)ptrVal, &val, sizeof(val), nullptr);
         return val;
     }
-    static float readChar(HANDLE proc, uintptr_t ptrVal) {
+    static char readChar(HANDLE proc, uintptr_t ptrVal) {
         char val = 0;
         ReadProcessMemory(proc, (BYTE*)ptrVal, &val, sizeof(val), nullptr);
         return val;
     }
-    static float readLong(HANDLE proc, uintptr_t ptrVal) {
+    static long readLong(HANDLE proc, uintptr_t ptrVal) {
         long val = 0;
+        ReadProcessMemory(proc, (BYTE*)ptrVal, &val, sizeof(val), nullptr);
+        return val;
+    }
+    static bool readBool(HANDLE proc, uintptr_t ptrVal) {
+        bool val = 0;
         ReadProcessMemory(proc, (BYTE*)ptrVal, &val, sizeof(val), nullptr);
         return val;
     }
