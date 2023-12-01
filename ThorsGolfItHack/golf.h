@@ -27,7 +27,7 @@ public:
 		this->physicsBase = Memory::GetModuleBaseAddress(procId, "PhysX_64.dll");
 	}
 	const Vec3 getPos() {
-		uintptr_t dynamicPtrBaseAddr = golfBase + 0x05948FE8;
+		uintptr_t dynamicPtrBaseAddr = golfBase + 0x059AD180;
 		uintptr_t xAddr = Memory::getPtrWithOffsets(h, dynamicPtrBaseAddr, mem::xoffsets);
 		uintptr_t yAddr = Memory::getPtrWithOffsets(h, dynamicPtrBaseAddr, mem::yoffsets);
 		uintptr_t zAddr = Memory::getPtrWithOffsets(h, dynamicPtrBaseAddr, mem::zoffsets);
@@ -37,7 +37,7 @@ public:
 		return Vec3(x, y, z);
 	}
 	void setPos(Vec3 pos) {
-		uintptr_t dynamicPtrBaseAddr = golfBase + 0x05948FE8;
+		uintptr_t dynamicPtrBaseAddr = golfBase + 0x059AD180;
 		uintptr_t xAddr = Memory::getPtrWithOffsets(h, dynamicPtrBaseAddr, mem::xoffsets);
 		uintptr_t yAddr = Memory::getPtrWithOffsets(h, dynamicPtrBaseAddr, mem::yoffsets);
 		uintptr_t zAddr = Memory::getPtrWithOffsets(h, dynamicPtrBaseAddr, mem::zoffsets);
@@ -46,7 +46,7 @@ public:
 		WriteProcessMemory(h, (LPVOID)zAddr, &pos.z, sizeof(pos.z), nullptr);
 	}
 	const Vec3 getVel() {
-		uintptr_t dynamicPtrBaseAddr = golfBase + 0x05948FE8;
+		uintptr_t dynamicPtrBaseAddr = golfBase + 0x059AD180;
 		uintptr_t xAddr = Memory::getPtrWithOffsets(h, dynamicPtrBaseAddr, mem::xveloffsets);
 		uintptr_t yAddr = Memory::getPtrWithOffsets(h, dynamicPtrBaseAddr, mem::yveloffsets);
 		uintptr_t zAddr = Memory::getPtrWithOffsets(h, dynamicPtrBaseAddr, mem::zveloffsets);
@@ -56,7 +56,7 @@ public:
 		return Vec3(x, y, z);
 	}
 	void setVel(Vec3 pos) {
-		uintptr_t dynamicPtrBaseAddr = golfBase + 0x05948FE8;
+		uintptr_t dynamicPtrBaseAddr = golfBase + 0x059AD180;
 		uintptr_t xAddr = Memory::getPtrWithOffsets(h, dynamicPtrBaseAddr, mem::xveloffsets);
 		uintptr_t yAddr = Memory::getPtrWithOffsets(h, dynamicPtrBaseAddr, mem::yveloffsets);
 		uintptr_t zAddr = Memory::getPtrWithOffsets(h, dynamicPtrBaseAddr, mem::zveloffsets);
@@ -84,7 +84,7 @@ public:
 		Camera(Golf& golf) : golf(golf) {}
 
 		const Vec3 getPos() {
-			uintptr_t dynamicPtrBaseAddr = golf.golfBase + 0x057DD8C8;
+			uintptr_t dynamicPtrBaseAddr = golf.golfBase + 0x05850170;
 			uintptr_t xAddr = Memory::getPtrWithOffsets(golf.h, dynamicPtrBaseAddr, mem::cameraXOffsets);
 			uintptr_t yAddr = Memory::getPtrWithOffsets(golf.h, dynamicPtrBaseAddr, mem::cameraYOffsets);
 			uintptr_t zAddr = Memory::getPtrWithOffsets(golf.h, dynamicPtrBaseAddr, mem::cameraZOffsets);
@@ -94,7 +94,7 @@ public:
 			return Vec3(x, y, z);
 		}
 		const Vec4 getQuat() {
-			uintptr_t dynamicPtrBaseAddr = golf.golfBase + 0x057DD8C8;
+			uintptr_t dynamicPtrBaseAddr = golf.golfBase + 0x05850170;
 			uintptr_t xAddr = Memory::getPtrWithOffsets(golf.h, dynamicPtrBaseAddr, mem::cameraQuatXOffsets);
 			uintptr_t zAddr = Memory::getPtrWithOffsets(golf.h, dynamicPtrBaseAddr, mem::cameraQuatZOffsets);
 			uintptr_t yAddr = Memory::getPtrWithOffsets(golf.h, dynamicPtrBaseAddr, mem::cameraQuatYOffsets);
@@ -106,33 +106,6 @@ public:
 			return Vec4(x, y, z, w);
 		}
 
-		const float getQuatX() {
-			uintptr_t dynamicPtrBaseAddr = golf.golfBase + 0x057DD8C8;
-			uintptr_t xAddr = Memory::getPtrWithOffsets(golf.h, dynamicPtrBaseAddr, mem::cameraQuatXOffsets);
-			float x = Memory::readFloat(golf.h, xAddr);
-			return x;
-		}
-
-		const float getQuatZ() {
-			uintptr_t dynamicPtrBaseAddr = golf.golfBase + 0x057DD8C8;
-			uintptr_t zAddr = Memory::getPtrWithOffsets(golf.h, dynamicPtrBaseAddr, mem::cameraQuatZOffsets);
-			float z = Memory::readFloat(golf.h, zAddr);
-			return z;
-		}
-
-		const float getQuatY() {
-			uintptr_t dynamicPtrBaseAddr = golf.golfBase + 0x057DD8C8;
-			uintptr_t yAddr = Memory::getPtrWithOffsets(golf.h, dynamicPtrBaseAddr, mem::cameraQuatYOffsets);
-			float y = Memory::readFloat(golf.h, yAddr);
-			return y;
-		}
-
-		const float getQuatW() {
-			uintptr_t dynamicPtrBaseAddr = golf.golfBase + 0x057DD8C8;
-			uintptr_t wAddr = Memory::getPtrWithOffsets(golf.h, dynamicPtrBaseAddr, mem::cameraQuatWOffsets);
-			float w = Memory::readFloat(golf.h, wAddr);
-			return w;
-		}
 		private:
 			Golf& golf;
 	};

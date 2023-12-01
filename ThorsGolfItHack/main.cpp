@@ -21,7 +21,7 @@ int main() {
 
 	Golf g = Golf(h, procId);
 
-	std::cout << "Flying: [OFF]";
+	std::cout << "Flying: [OFF] (RSHIFT TO TOGGLE)" << std::endl;
 	uintptr_t lastY = 0;
 	localPos = g.getPos();
 	while (!GetAsyncKeyState(VK_END)) {
@@ -32,7 +32,7 @@ int main() {
 			
 			if (flying) {
 				localPos = g.getPos();
-				std::cout << "Flying: [ON]" << std::endl;;
+				std::cout << "Flying: [ON]" << std::endl;
 			}
 			else {
 				std::cout << "Flying: [OFF]" << std::endl;
@@ -64,17 +64,18 @@ int main() {
 				localPos.y -= (dy * speed);
 				localPos.z -= (dz * speed);
 			}
-			if (GetAsyncKeyState('A')) {
-
-			}
-			if (GetAsyncKeyState('D')) {
-				
-			}
+			//speed up slow down
 			if (GetAsyncKeyState(VK_CONTROL)) {
-				
+				speed += 0.25;
+				if (speed > 30.0f) {
+					speed = 30.0f;
+				}
 			}
 			if (GetAsyncKeyState(VK_LSHIFT)) {
-				
+				speed -= 0.25;
+				if (speed < 4.0f) {
+					speed = 4.0f;
+				}
 			}
 			
 
