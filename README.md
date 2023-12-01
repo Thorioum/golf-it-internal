@@ -1,5 +1,5 @@
 # ThorsGolfItExternal
-a a simple c++ external movement hack for the steam game golf it
+# a simple c++ external movement hack for the steam game golf it
 
 Keybinds:
 W,S (using camera for direction
