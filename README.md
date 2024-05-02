@@ -1,4 +1,4 @@
-# Thor's "Golf It" External
+# Thor's "Golf It" External (OUTDATED)
 # a simple c++ external movement hack for the steam game golf it
 
 Keybinds:
