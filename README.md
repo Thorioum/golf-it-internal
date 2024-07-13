@@ -1,5 +1,5 @@
 # Thor's "Golf It" Internal
-# a simple c++ internal movement hack for the steam game golf it
+# a simple c++ internal movement hack for the steam game golf it (now working again)
 
 Uses my skid soup memory wrapper asgard and minhook to function
 if you for some reason want to build it yourself make sure you put MinHook.x64.dll and Asgard.dll in the same folder as the exe
