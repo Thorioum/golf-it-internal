@@ -48,7 +48,6 @@ __int64 __fastcall detourCameraFunc(__m128* camera) {
 	unsigned __int64 v9 = camera->m128_u64[0] + 304;
 	__int64 v19 = *(QWORD*)v9 + 192i64 * camera->m128_i32[3];
 	camInfo = *(cameraInfo*)v19;
-	std::cout << (uintptr_t*)v19 << std::endl;
 	return pFuncCam(camera);
 }
 
@@ -74,13 +73,15 @@ public:
 		this->physicsModule = (BYTE*)GetModuleHandle("PhysX_64.dll");
 
 		//pattern scan for cameraFunc
-		ScanData signature = ScanData("4C 8B DC 55 57 41 56 49 8D 6B ? 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 45 ? 48 8B 01");
+		ScanData signature = ScanData("4C 8B DC 55 57 41 57 49 8D 6B ? 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 45 ? 48 8B 01");
 		size_t size = Memory::getModuleSize(procId, "GolfIt-Win64-Shipping.exe");
 		ScanData data = ScanData(size);
 		uintptr_t moduleBaseAddr = Memory::getModuleBaseAddr(procId, "GolfIt-Win64-Shipping.exe");
 		HANDLE golfItHandle = GetCurrentProcess();
 		Memory::read(golfItHandle, moduleBaseAddr, data.data, data.size);
 		uintptr_t cameraAddr = Scanner::scan(signature, data);
+		std::cout << "Found Camera At: " << cameraAddr << std::endl;
+
 		//
 
 		if (MH_Initialize() != MH_OK) {
