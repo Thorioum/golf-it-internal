@@ -13,3 +13,5 @@ W,S (using camera for direction
 LCTRL speed up
 LSHIFT slow down
 RSHIFT toggle
+
+If your game freezes, the console may be holding it up. Try going to the injected console and pressing Enter
